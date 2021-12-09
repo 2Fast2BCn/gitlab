@@ -471,7 +471,7 @@ spec:
               path: 
               tls:
                 secretName: ingress-cert-gitlab
-          task-runner:
+          toolbox:
             replicas: 1
             antiAffinityLabels:
               matchLabels:
