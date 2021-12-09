@@ -429,18 +429,7 @@ spec:
             config: |
               [[runners]]
                 [runners.kubernetes]
-                image = "ubuntu:18.04"
-                {{- if .Values.global.minio.enabled }}
-                [runners.cache]
-                  Type = "s3"
-                  Path = "gitlab-runner"
-                  Shared = true
-                  [runners.cache.s3]
-                    ServerAddress = {{ include "gitlab-runner.cache-tpl.s3ServerAddress" . }}
-                    BucketName = "runner-cache"
-                    BucketLocation = "us-east-1"
-                    Insecure = false
-                {{ end }}
+                image = "ubuntu:20.04"
           podAnnotations:
             gitlab.com/prometheus_scrape: "true"
             gitlab.com/prometheus_port: 9252
