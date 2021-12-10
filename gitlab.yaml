@@ -39,13 +39,22 @@ spec:
             https: true
             externalIP:
             ssh: ~
-            gitlab: {}
-            minio: {}
-            registry: {}
-            tls: {}
-            smartcard: {}
-            kas: {}
-            pages: {}
+            gitlab:
+              name: gitlab.allnice.eu
+              https: true
+            registry:
+              name: registry.allnice.eu
+              https: true
+            minio:
+              name: minio.allnice.eu
+              https: true
+            smartcard:
+              name: smartcard.allnice.eu
+            kas:
+              name: kas.allnice.eu
+            pages:
+              name: pages.allnice.eu
+              https: true
           ingress:
             enabled: false
             configureCertmanager: false
