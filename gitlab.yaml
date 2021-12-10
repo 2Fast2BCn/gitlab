@@ -45,6 +45,7 @@ spec:
             tls: {}
             smartcard: {}
             kas: {}
+            pages: {}
           ingress:
             enabled: false
             configureCertmanager: false
@@ -103,8 +104,12 @@ spec:
           appConfig:
             enableUsagePing: true
             enableSeatLink: true
+            enableImpersonation:
+            applicationSettingsCacheSeconds: 60
             defaultCanCreateGroup: true
             usernameChangingEnabled: true
+            issueClosingPattern:
+            defaultTheme:
             defaultProjectsFeatures:
               issues: true
               mergeRequests: true
@@ -113,6 +118,7 @@ spec:
               builds: true
             webhookTimeout:
             maxRequestDurationSeconds:
+            cron_jobs: {}
             contentSecurityPolicy:
               enabled: false
               report_only: true
@@ -123,6 +129,9 @@ spec:
               googleAnalyticsId:
               matomoUrl:
               matomoSiteId:
+              matomoDisableCookies:
+              oneTrustId:
+              googleTagManagerNonceId:
             object_store:
               enabled: false
               proxy_download: true
@@ -184,24 +193,38 @@ spec:
               enabled: false
             smartcard:
               enabled: false
+            sidekiq:
+              routingRules: []
             initialDefaults: {}
+          oauth:
+            gitlab-pages: {}
           geo:
             enabled: false
             role: primary
             nodeName: # defaults to `gitlab.gitlab.host`
             psql:
               password: {}
+            registry:
+              replication:
+                enabled: false
+                primaryApiUrl:
           kas:
             enabled: false
           shell:
             authToken: {}
             hostKeys: {}
+            tcp:
+              proxyProtocol: false
           railsSecrets: {}
           rails:
             bootsnap: # Enable / disable Shopify/Bootsnap cache
               enabled: true
           registry:
             bucket: registry
+            certificate: {}
+            httpSecret: {}
+            notificationSecret: {}
+            notifications: {}
           pages:
             enabled: false
           runner:
@@ -225,6 +248,7 @@ spec:
             image:
               repository: registry.gitlab.com/gitlab-org/build/cng/alpine-certificates
               tag: 20191127-r2
+            customCAs: []
           kubectl:
             image:
               repository: registry.gitlab.com/gitlab-org/build/cng/kubectl
@@ -243,6 +267,8 @@ spec:
             annotations: {}
           tracing:
             connection:
+              string: ""
+            urlTemplate: ""
           extraEnv: {}
 
         upgradeCheck:
