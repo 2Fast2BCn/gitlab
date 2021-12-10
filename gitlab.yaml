@@ -264,9 +264,9 @@ spec:
           enabled: false
 
         prometheus:
-          install: false
+          install: true
           rbac:
-            create: false
+            create: true
           alertmanager:
             enabled: false
           alertmanagerFiles:
@@ -278,7 +278,9 @@ spec:
           pushgateway:
             enabled: false
           server:
-            retention: 7d
+            retention: 15d
+            strategy:
+              type: Recreate
           serverFiles:
             prometheus.yml:
               scrape_configs:
