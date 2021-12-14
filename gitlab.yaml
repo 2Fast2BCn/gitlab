@@ -15,30 +15,11 @@ spec:
       valueFiles:
         - values.yaml
       values: |
-        ## NOTICE
-        # Due to the scope and complexity of this chart, all possible values are
-        # not documented in this file. Extensive documentation for these values
-        # and more can be found at https://gitlab.com/gitlab-org/charts/gitlab/
-
+        # https://gitlab.com/gitlab-org/charts/gitlab/
         global:
-          common:
-            labels: {}
-          operator:
-            enabled: false
-            rollout:
-              autoPause: true
-          pod:
-            labels: {}
           edition: ce
-          application:
-            create: false
-            allowClusterRoles: true
           hosts:
             domain: allnice.eu
-            hostSuffix:
-            https: true
-            externalIP:
-            ssh: ~
             gitlab:
               name: gitlab.allnice.eu
               https: true
@@ -60,8 +41,6 @@ spec:
             configureCertmanager: false
             annotations: 
               kubernetes.io/tls-acme: true
-          gitlab:
-            license: {}
           psql:
             connectTimeout:
             password: {}
