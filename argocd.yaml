@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'gitlab-deployment'
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/2Fast2BCn/gitlab.git'
+    path: gitlab
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: gitlab
+  syncPolicy:
+    automated:
+        prune: true
+    syncOptions:
+        - CreateNamespace=true
