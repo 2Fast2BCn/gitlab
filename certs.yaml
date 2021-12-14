@@ -1,0 +1,60 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert-gitlab
+  namespace: istio-system
+spec:
+  secretName: ingress-cert-gitlab
+  commonName: gitlab.allnice.eu
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+  - gitlab.allnice.eu
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert-registry
+  namespace: istio-system
+spec:
+  secretName: ingress-cert-registry
+  commonName: registry.allnice.eu
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+  - registry.allnice.eu
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert-minio
+  namespace: istio-system
+spec:
+  secretName: ingress-cert-minio
+  commonName: minio.allnice.eu
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+  - minio.allnice.eu
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress-cert-gitlab-wc
+  namespace: istio-system
+spec:
+  secretName: ingress-cert-gitlab-wc
+  commonName: "*.gitlab.allnice.eu"
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+  - "*.gitlab.allnice.eu"
+---

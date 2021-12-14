@@ -1,0 +1,87 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  hosts:
+  - gitlab.allnice.eu
+  gateways:
+  - gitlab-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /admin/sidekiq
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: gitlab-webservice-default
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 8181
+        host: gitlab-webservice-default
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gitlab-minio
+  namespace: gitlab
+spec:
+  hosts:
+  - minio.allnice.eu
+  gateways:
+  - minio-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 9000
+        host: gitlab-minio-svc
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gitlab-registry
+  namespace: gitlab
+spec:
+  hosts:
+  - registry.allnice.eu
+  gateways:
+  - registry-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 5000
+        host: gitlab-registry
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gitlab-wc
+  namespace: gitlab
+spec:
+  hosts:
+  - '*.gitlab.allnice.eu'
+  gateways:
+  - gitlab-wc-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: gitlab-webservice-default
